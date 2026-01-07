@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Retro</title>
+    <style>
+        /* --- CSS VARIABLE --- */
+        :root {
+            --bg-color: #050505;
+            --main-color: #33ff00; /* Hijau Terminal */
+            --accent-color: #ff0055; /* Merah Retro */
+            --glass-panel: rgba(0, 50, 0, 0.2);
+        }
+
+        /* --- RESET & BODY --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--main-color);
+            font-family: 'Courier New', Courier, monospace; /* Font Retro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            text-shadow: 0 0 5px var(--main-color); /* Efek Glowing */
+        }
+
+        /* --- EFEK GARIS CRT (Scanline) --- */
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(18, 16, 16, 0) 50%,
+                rgba(0, 0, 0, 0.25) 50%
+            );
+            background-size: 100% 4px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* --- KONTAINER UTAMA --- */
+        .container {
+            width: 90%;
+            max-width: 700px;
+            border: 2px solid var(--main-color);
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 0 20px rgba(51, 255, 0, 0.2);
+            background-color: var(--glass-panel);
+        }
+
+        /* --- HEADER / JUDUL --- */
+        .header {
+            text-align: center;
+            border-bottom: 2px dashed var(--main-color);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        /* Animasi Kursor Berkedip */
+        .cursor {
+            display: inline-block;
+            width: 12px;
+            height: 24px;
+            background-color: var(--main-color);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* --- LAYOUT BIODATA --- */
+        .profile-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        /* FOTO PROFIL */
+        .avatar {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .avatar img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 4px solid var(--main-color);
+            filter: grayscale(100%) contrast(1.2); /* Efek foto jadul */
+        }
+
+        .status {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            background-color: var(--main-color);
+            color: var(--bg-color);
+            padding: 2px 5px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        /* INFO TEXT */
+        .info {
+            flex: 2;
+            min-width: 250px;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 10px;
+            border-bottom: 1px dotted rgba(51, 255, 0, 0.3);
+            padding-bottom: 5px;
+        }
+
+        .label {
+            width: 120px;
+            font-weight: bold;
+            opacity: 0.8;
+        }
+
+        .value {
+            flex: 1;
+        }
+
+        /* --- SKILL BAR --- */
+        .skills {
+            margin-top: 2rem;
+        }
+        
+        .skills h3 {
+            margin-bottom: 10px;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        .skill-list span {
+            display: inline-block;
+            border: 1px solid var(--main-color);
+            padding: 5px 10px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .skill-list span:hover {
+            background-color: var(--main-color);
+            color: var(--bg-color);
+            cursor: default;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 600px) {
+            .profile-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .info-row {
+                flex-direction: column;
+            }
+            .label {
+                margin-bottom: 2px;
+                color: var(--accent-color);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <h1>BIODATA_USER<span class="cursor"></span></h1>
+        </header>
+
+        <div class="profile-content">
+            <div class="avatar">
+                <img src="https://robohash.org/retro?set=set4" alt="Foto Profil">
+                <br>
+                <div class="status">STATUS: ONLINE</div>
+            </div>
+
+            <div class="info">
+                <div class="info-row">
+                    <div class="label">> NAMA</div>
+                    <div class="value">Budi Santoso</div>
+                </div>
+                <div class="info-row">
+                    <div class="label">> TGL LAHIR</div>
+                    <div class="value">12 Agustus 1995</div>
+                </div>
+                <div class="info-row">
+                    <div class="label">> ALAMAT</div>
+                    <div class="value">Jakarta, Indonesia</div>
+                </div>
+                <div class="info-row">
+                    <div class="label">> PEKERJAAN</div>
+                    <div class="value">Web Developer</div>
+                </div>
+                <div class="info-row">
+                    <div class="label">> EMAIL</div>
+                    <div class="value">budi@retro.mail</div>
+                </div>
+
+                <div class="skills">
+                    <h3>LOADED_SKILLS:</h3>
+                    <div class="skill-list">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>Python</span>
+                        <span>Retro Gaming</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            SYSTEM VERSION 1.0 // LAST UPDATE: 2024
+        </div>
+    </div>
+
+</body>
+</html>
